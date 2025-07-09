@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{base::layout(~{::section})}"> 
+
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			Title Here
+		</title>
+	</head>
+	<body>
+		<section>
+		<div class="row">
+		<div class="col-md-10 offset-md-1">
+		<div class="card mt-3">
+	   <div class="card-body"> 
+	   <h4 style="text-align: center;">Employee Registration Form</h4>
+	   <hr>
+	<form th:action="(save-employee)" method="post">
+	<div class="row">
+	<div class="col-md-3 mt-2">
+    <label for="empName" class="form-label">Employee Name</label>
+									
+	</div>
+								
+    <div class="col-md-9 mt-2">
+	<input type="text" class="form-control" name="employeeName" id="employeeName" autocomplete="off" required="required">									
+	</div>
+	
+	<div class="col-md-3 mt-2">
+	    <label for="email" class="form-label">Email</label>
+										
+		</div>
+									
+	    <div class="col-md-9 mt-2">
+		<input type="email" class="form-control" name="email" id="email" autocomplete="off" required="required">									
+		</div>
+		
+		<div class="col-md-3 mt-2">
+		<label for="gender" class="form-label">Gender</label>
+		</div>
+		<div class="col-md-9 mt-2">
+		<input class="form-check-input" type="radio" name="gender" id="gender" value="M"> Male	
+		<input class="form-check-input ms-4" type="radio" name="gender" id="gender" value="F"> Female									
+		</div>
+		
+		
+		<div class="col-md-3 mt-2">
+		<label for="dateOfBirth" class="form-label">Date of Birth</label>
+		</div>
+		<div class="col-md-9 mt-2">
+		<input type="date" class="form-control" name="dateOfBirth" id="dateOfBirth" autocomplete="off" required="required">									
+		</div>
+		
+		
+		<div class="col-md-3 mt-2">
+		<label for="joinDate" class="form-label">Date of Join</label>
+		</div>
+	   <div class="col-md-9 mt-2">
+		<input type="date" class="form-control" name="joinDate" id="joinDate" autocomplete="off" required="required">									
+	   </div>
+	   
+	   
+	   <div class="col-md-3 mt-2">
+	   <label for="mobileNumber" class="form-label">Mobile Number</label>
+	   </div>
+	   <div class="col-md-9 mt-2">
+	   <input type="number" class="form-control" name="mobileNumber" id="mobileNumber" autocomplete="off" required="required">									
+	   </div>
+	   
+	   <div class="col-md-3 mt-2">
+	   <label for="aadhaarNumber" class="form-label">Aadhaar Number</label>
+	   	</div>
+	   	<div class="col-md-9 mt-2">
+	   	<input type="number" class="form-control" name="aadhaarNumber" id="aadhaarNumber" autocomplete="off" required="required">									
+	   	</div>	  
+		 
+		<div class="col-md-3 mt-2">
+	   <label for="accountNumber" class="form-label">Account Number</label>
+	  </div>
+	<div class="col-md-9 mt-2">
+	<input type="number" class="form-control" name="accountNumber" id="accountNumber" autocomplete="off" required="required">									
+	</div>
+	
+	
+	<div class="col-md-3 mt-2">
+	<label for="Department" class="form-label">Department</label>
+	</div>
+	<div class="col-md-9 mt-2">	
+		<select class="form-select" id="department" name="department" onchange="updateDesignations()">
+			<option selected="selected">Select Department</option>
+			<option value="Development">Development</option>
+			<option value="QA & Automation Testing">QA & Automation Testing</option>
+			<option value="Networking">Networking</option>
+			<option value="HR Team">HR Team</option>
+			<option value="Security">Security</option>
+			<option value="Sales & Marketing">Sales & Marketing</option>
+		</select>
+	</div>
+	
+	
+	<div class="col-md-3 mt-2">
+		   <label for="designation" class="form-label">Designation</label>
+		  </div>
+		<div class="col-md-9 mt-2">
+			<select class="form-select" id="designation" name="designation">
+				<option selected="selected">Select Designation</option>
+			</select>
+			</div>
+	
+
+<div class="col-md-3 mt-2">
+<label for="previousCompany" class="form-label">Previous Company Name</label>
+</div>
+<div class="col-md-9 mt-2">
+<input type="text" class="form-control" name="previousCompany" id="previousCompany" autocomplete="off" required="required">									
+</div>	
+	
+
+<div class="col-md-3 mt-2">
+<label for="pfNumber" class="form-label">PF Number</label>
+</div>
+<div class="col-md-9 mt-2">
+<input type="text" class="form-control" name="pfNumber" id="pfNumber" autocomplete="off" required="required">									
+</div>	
+
+
+<div class="col-md-3 mt-2">
+<label for="salary" class="form-label">Salary</label>
+</div>
+<div class="col-md-9 mt-2">
+<input type="number" class="form-control" name="salary" id="salary" autocomplete="off" required="required">									
+</div>	
+
+
+<div class="col-md-3 mt-2">
+<label for="currentAddress" class="form-label">Current Address</label>
+</div>
+<div class="col-md-9 mt-2">
+<input type="text" class="form-control" name="currentAddress" id="currentAddress" autocomplete="off" required="required">									
+</div>	
+
+
+<div class="col-md-3 mt-2">
+<label for="permanentAddress" class="form-label">Permanent Address</label>
+</div>
+<div class="col-md-9 mt-2">
+<input type="text" class="form-control" name="permanentAddress" id="permanentAddress" style="width:100%" required="required" maxlength="1000" minlength="10">									
+</div>
+
+<div class="col-md-3 mt-2">
+<label for="role" class="form-label">Role</label>
+</div>
+<div class="col-md-9 mt-2">
+	<select class="form-select" name="role" id="role">
+		<option value="USER">User</option>
+		<option value="ADMIN">Admin</option>
+	</select>
+</div>	
+
+<div class="col-md-3 mt-2">
+<label class="form-check-label" for="active">Active</label>
+</div>
+<div class="col-md-9 mt-2 form-check form-switch form-switch">
+<input style="font-size:25px" class="form-check-input ms-1" type="checkbox"  name="active" id="active"  checked="checked">									
+</div>
+	
+	
+
+			
+	
+	
+	
+	
+	<div class="container text-center mt-3">
+	<input type="submit" value="Submit" class="btn btn-success">		
+	</div>
+		
+		 
+			
+	
+	</div>
+	</form>
+						
+	</div>	
+						
+	</div>
+					
+	</div>
+	</div>
+	</section>
+		
+	</body>
+</html>
