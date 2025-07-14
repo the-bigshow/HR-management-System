@@ -141,16 +141,18 @@ public class HrController {
 	
 	@GetMapping("/status")
 	public String status(Model model) {
-		List<Compose> findAll=composeRepo.findAll();
-		findAll.stream()
-		.forEach(k->{
-			int id=k.getParentUkid();
-			String designation=employeeRepo.findById(id).get().getDesignation();
+		List<Compose> findAll = composeRepo.findAll();
+
+		findAll.forEach(k -> {
+			int id = k.getParentUkid();
+			String designation = employeeRepo.findById(id)
+				.map(Employee::getDesignation)
+				.orElse("Unknown"); // or throw new RuntimeException(...)
 			k.setPosition(designation);
 		});
-		model.addAttribute("statusList",findAll);
+
+		model.addAttribute("statusList", findAll);
 		return "status";
-		
 	}
 	
 	@GetMapping("/my-profile")
